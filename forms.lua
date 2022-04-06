@@ -7,14 +7,18 @@ function set_skin.open_formspec(name)
     --minetest.chat_send_all(dump(set_skin.textures))
 
     local textures = ""
-    for k, v in pairs( set_skin.textures ) do
-        textures = textures .. v .. ","
+    if set_skin.textures then
+        for k, v in pairs( set_skin.textures ) do
+            textures = textures .. v .. ","
+        end
+
+	    basic_form = basic_form.."dropdown[0.5,0.5;4,0.8;textures;".. textures ..";1;false]"
+        basic_form = basic_form.."button[0.5,1.6;4,0.8;set_texture;Set Player Texture]"
+
+        minetest.show_formspec(name, "set_skin:change", basic_form)
+    else
+        minetest.chat_send_player(name, "The isn't activated as secure. Aborting")
     end
-
-	basic_form = basic_form.."dropdown[0.5,0.5;4,0.8;textures;".. textures ..";1;false]"
-    basic_form = basic_form.."button[0.5,1.6;4,0.8;set_texture;Set Player Texture]"
-
-    minetest.show_formspec(name, "set_skin:change", basic_form)
 end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
