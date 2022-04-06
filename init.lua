@@ -73,7 +73,7 @@ if not skinsdb_mod_path then -- If not managed by skinsdb
 
 		local skin = player:get_attribute("set_skin:player_skin")
 
-		if skin and skin ~= "" then
+		if skin and skin ~= "" and skin ~= default_skin then
 
 			-- setting player skin on connect has no effect, so delay skin change
 			minetest.after(1, function(player1, skin1)
