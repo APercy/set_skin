@@ -60,7 +60,7 @@ function set_skin.set_player_skin(player, skin, save)
 	if save and not skinsdb_mod_path then
 
 		if skin == default_skin or skin == "" then
-			player:set_attribute("set_skin:player_skin", "")
+			player:set_attribute("set_skin:player_skin", nil)
 		else
 			player:set_attribute("set_skin:player_skin", skin)
 		end
