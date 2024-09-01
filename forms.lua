@@ -27,7 +27,12 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
         local t_player = minetest.get_player_by_name(set_skin.curr_target)
 		if (fields.textures or fields.set_texture) and t_player then
             set_skin.set_player_skin(t_player, fields.textures, true)
+        else
+		    if t_player then
+                set_skin.set_player_skin(t_player, "", true)
+		    end
 		end
+
         minetest.close_formspec(name, "set_skin:change")
     end
 end)
